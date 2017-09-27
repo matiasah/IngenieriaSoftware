@@ -24,9 +24,6 @@ public class MatrizJV extends JPanel implements Observer {
         this.ventana = ventana;
         this.celdas = null;
         this.ancho = 0;
-        this.largo = 0;
-        
-        this.ventana.add(this);
         
     }
 

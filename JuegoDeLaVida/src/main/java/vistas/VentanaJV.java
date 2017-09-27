@@ -1,7 +1,7 @@
 package vistas;
 
 import controladores.*;
-import java.awt.GridLayout;
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 public class VentanaJV extends JFrame {
@@ -12,16 +12,17 @@ public class VentanaJV extends JFrame {
 
     public VentanaJV() {
         
-        this.setLayout(new GridLayout(2, 1));
-        
         this.panelMatriz = new MatrizJV(this);
         this.controlador = new ControladorJV();
         this.panelInterfaz = new PanelInterfazJV(this);
         
         this.controlador.addObserver(this.panelMatriz);
-        this.controlador.setTamaño(20, 20);
+        this.controlador.setTamaño(50, 50);
         
-        this.setSize(300, 600);
+        this.add(this.panelMatriz, BorderLayout.CENTER);
+        this.add(this.panelInterfaz, BorderLayout.SOUTH);
+        
+        this.setSize(300, 410);
         this.setVisible(true);
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

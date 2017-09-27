@@ -202,6 +202,23 @@ public class ControladorJV extends Observable {
         }
 
     }
+    
+    /**
+     * Limpia el juego actual
+     */
+    public void limpiar() {
+        
+        for (int x = 0; x < this.ancho; x++) {
+            
+            for (int y = 0; y < this.largo; y++) {
+                
+                this.setMuerta(x, y);
+                
+            }
+            
+        }
+        
+    }
 
     /**
      *
