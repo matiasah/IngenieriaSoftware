@@ -1,0 +1,32 @@
+{
+  "objectClassName" : "nameserver",
+  "handle" : "E-ROID",
+  "ldhName" : "ns3.cat.xn--q9jyb4c",
+  "unicodeName" : "ns3.cat.みんな",
+  "status" : ["active", "associated"],
+  "links" :
+  [
+    {
+      "value" : "http://myserver.example.com/nameserver/ns3.cat.xn--q9jyb4c",
+      "rel" : "self",
+      "href" : "http://myserver.example.com/nameserver/ns3.cat.xn--q9jyb4c",
+      "type" : "application/rdap+json"
+    }
+  ],
+  "events": [
+    {
+      "eventAction": "registration",
+      "eventActor": "foo",
+      "eventDate": "1997-01-01T00:00:00.000Z"
+    },
+    {
+      "eventAction": "last update of RDAP database",
+      "eventDate": "2000-01-01T00:00:00.000Z"
+    }
+  ],
+  "ipAddresses" :
+  {
+    "v4" : ["1.2.3.4"],
+    "v6" : ["bad:f00d:cafe::15:beef"]
+  }
+}

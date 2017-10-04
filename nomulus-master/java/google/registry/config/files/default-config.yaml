@@ -1,0 +1,234 @@
+# This is the default configuration file for Nomulus. Do not make changes to it
+# unless you are writing new features that requires you to. To customize an
+# individual deployment or environment, create a nomulus-config.yaml file in the
+# WEB-INF/ directory overriding only the values you wish to change. You may need
+# to override some of these values to configure and enable some services used in
+# production environments.
+
+appEngine:
+  # Globally unique App Engine project ID
+  projectId: registry-project-id
+
+  # Hostname and port of the tools service for the project.
+  toolsServiceUrl:
+    hostName: localhost
+    port: 443
+
+gSuite:
+  # Publicly accessible domain name of the running G Suite instance.
+  domainName: domain-registry.example
+
+  # Display name and email address used on outgoing emails through G Suite.
+  outgoingEmailDisplayName: Example Registry
+  outgoingEmailAddress: noreply@project-id.appspotmail.com
+
+  # Email address of the admin account on the G Suite app. This is used for
+  # logging in to perform administrative actions, not sending emails.
+  adminAccountEmailAddress: admin@example.com
+
+registryPolicy:
+  # Repository identifier (ROID) suffix for contacts and hosts.
+  contactAndHostRoidSuffix: ROID
+
+  # Product name of the registry. Used throughout the registrar console.
+  productName: Nomulus
+
+  # Custom logic factory fully-qualified class name.
+  # See flows/custom/CustomLogicFactory.java
+  customLogicFactoryClass: google.registry.flows.custom.CustomLogicFactory
+
+  # WHOIS command factory fully-qualified class name.
+  # See whois/WhoisCommandFactory.java
+  whoisCommandFactoryClass: google.registry.whois.WhoisCommandFactory
+
+  # Length of time after which contact transfers automatically conclude.
+  contactAutomaticTransferDays: 5
+
+  # Server ID used in the 'svID' element of an EPP 'greeting'.
+  greetingServerId: Nomulus Registry
+
+  # List of email addresses that notifications of registrar and/or registrar
+  # contact updates should be sent to, or empty list for no notifications.
+  registrarChangesNotificationEmailAddresses: []
+
+  # Default WHOIS server used when not specified on a registrar.
+  defaultRegistrarWhoisServer: whois.domain-registry.example
+
+  # Default referral URL used when not changed by a registrar.
+  defaultRegistrarReferralUrl: https://www.domain-registry.example
+
+  # Mode TMCH should run in (PRODUCTION for production environments, PILOT for
+  # all others including sandbox).
+  tmchCaMode: PILOT
+
+  # URL for the ICANN TMCH Certificate Revocation List.
+  tmchCrlUrl: http://crl.icann.org/tmch_pilot.crl
+
+  # URL for the MarksDB registry interface.
+  tmchMarksDbUrl: https://test.ry.marksdb.org
+
+  # Registry’s operations registrar, used for front-end availability/premium
+  # domain checks.
+  checkApiServletClientId: TheRegistrar
+
+  # The registry admin's registrar. Admins are granted permission to log in
+  # using this registrar automatically if they are not associated with any
+  # registrar
+  registryAdminClientId: TheRegistrar
+
+  # Disclaimer at the top of the exported reserved terms list.
+  reservedTermsExportDisclaimer: |
+    This list contains reserved terms for the TLD. Other terms may be reserved
+    but not included in this list, including terms the registry chooses not
+    to publish, and terms that ICANN commonly mandates to be reserved. This
+    list is subject to change and the most up-to-date source is always to
+    check availability directly with the Registry server.
+
+  # Disclaimer at the top of WHOIS results.
+  whoisDisclaimer: |
+    WHOIS information is provided by the registry solely for query-based,
+    informational purposes. Any information provided is "as is" without any
+    guarantee of accuracy. You may not use such information to (a) allow,
+    enable, or otherwise support the transmission of mass unsolicited,
+    commercial advertising or solicitations; (b) enable high volume, automated,
+    electronic processes that access the registry's systems or any
+    ICANN-Accredited Registrar, except as reasonably necessary to register
+    domain names or modify existing registrations; or (c) engage in or support
+    unlawful behavior. We reserve the right to restrict or deny your access to
+    the WHOIS database, and may modify these terms at any time.
+
+datastore:
+  # Number of commit log buckets in Datastore. Don't change after initial
+  # install.
+  commitLogBucketsNum: 100
+
+  # Number of EPP resource index buckets in Datastore. Don’t change after
+  # initial install.
+  eppResourceIndexBucketsNum: 997
+
+  # Milliseconds that Objectify waits to retry a Datastore transaction (this
+  # doubles after each failure).
+  baseOfyRetryMillis: 100
+
+caching:
+  # Length of time that a singleton should be cached before expiring.
+  singletonCacheRefreshSeconds: 600
+
+  # Length of time that a reserved/premium list should be cached before expiring.
+  domainLabelCachingSeconds: 3600
+
+  # Length of time that a long-lived singleton in persist mode should be cached.
+  singletonCachePersistSeconds: 31557600 # This is one year.
+
+  # Maximum total number of static premium list entry entities to cache in
+  # memory, across all premium lists for all TLDs. Tuning this up will use more
+  # memory (and might require using larger App Engine instances). Note that
+  # premium list entries that are absent are cached in addition to ones that are
+  # present, so the total cache size is not bounded by the total number of
+  # premium price entries that exist.
+  staticPremiumListMaxCachedEntries: 200000
+
+oAuth:
+  # OAuth scopes to detect on access tokens. Superset of requiredOauthScopes.
+  availableOauthScopes:
+    - https://www.googleapis.com/auth/userinfo.email
+
+  # OAuth scopes required for authenticating. Subset of availableOauthScopes.
+  requiredOauthScopes:
+    - https://www.googleapis.com/auth/userinfo.email
+
+  # OAuth client IDs that are allowed to authenticate and communicate with
+  # backend services, e. g. nomulus tool, EPP proxy, etc. All client_id values
+  # used in client_secret.json files for associated tooling should be included
+  # in this list. Client IDs are typically of the format
+  # numbers-alphanumerics.apps.googleusercontent.com
+  allowedOauthClientIds: []
+
+icannReporting:
+  # URL we PUT monthly ICANN transactions reports to.
+  icannTransactionsReportingUploadUrl: https://ry-api.example.org/report/registrar-transactions
+
+  # URL we PUT monthly ICANN activity reports to.
+  icannActivityReportingUploadUrl: https://ry-api.example.org/report/registry-functions-activity
+
+rde:
+  # URL prefix of ICANN's server to upload RDE reports to. Nomulus adds /TLD/ID
+  # to the end of this to construct the full URL.
+  reportUrlPrefix: https://test-ry-api.icann.org:8543/report/registry-escrow-report
+
+  # SFTP URL to which RDE deposits are uploaded. This should contain a username
+  # but not the password.
+  uploadUrl: sftp://username@rde-provider.example
+
+  # Identity of the SSH keys (stored in the Keyring) used for RDE SFTP uploads.
+  sshIdentityEmailAddress: rde@example.com
+
+registrarConsole:
+  # Filename of the logo to use in the header of the console. This filename is
+  # relative to ui/assets/images/
+  logoFilename: logo.png
+
+  # Contact phone number for support with the registry.
+  supportPhoneNumber: +1 (888) 555 0123
+
+  # Contact email address for support with the registry.
+  supportEmailAddress: support@example.com
+
+  # From: email address used to send announcements from the registry.
+  announcementsEmailAddress: announcements@example.com
+
+  # Contact email address for questions about integrating with the registry.
+  integrationEmailAddress: integration@example.com
+
+  # URL linking to directory of technical support docs on the registry.
+  technicalDocsUrl: http://example.com/your_support_docs/
+
+monitoring:
+  # Max queries per second for the Google Cloud Monitoring V3 (aka Stackdriver)
+  # API. The limit can be adjusted by contacting Cloud Support.
+  stackdriverMaxQps: 30
+
+  # Max number of points that can be sent to Stackdriver in a single
+  # TimeSeries.Create API call.
+  stackdriverMaxPointsPerRequest: 200
+
+  # How often metrics are exported to BigQuery.
+  writeIntervalSeconds: 60
+
+misc:
+  # The ID of the Google Sheet (as found in the URL) to export registrar details
+  # to. Leave this null to disable syncing.
+  sheetExportId: null
+
+rdap:
+  # Base URL (with trailing slash) for RDAP links.
+  baseUrl: http://domain-registry.example/rdap/
+
+# Braintree is a credit card payment processor that is used on the registrar
+# console to allow registrars to pay their invoices.
+braintree:
+  # Merchant ID of the Braintree account.
+  merchantId: example
+
+  # Public key used for accessing Braintree API (this is found on their site).
+  publicKey: example
+
+  # A map of JODA Money CurrencyUnits, specified in three letter ISO-4217
+  # format, to Braintree account IDs (each account is limited to a single
+  # currency). For example, one entry might be:
+  #   USD: accountIdUsingUSD
+  merchantAccountIdsMap: {}
+
+kms:
+  # GCP project containing the KMS keyring. Should only be used for KMS in
+  # order to keep a simple locked down IAM configuration.
+  projectId: registry-kms-project-id
+
+  # The name to use for the Cloud KMS KeyRing which will store encryption keys
+  # for Nomulus secrets.
+  keyringName: nomulus
+
+# Configuration options relevant to the "nomulus" registry tool.
+registryTool:
+  # Name of the client secret file used for authenticating with App Engine.
+  clientSecretFilename: /google/registry/tools/resources/client_secret.json

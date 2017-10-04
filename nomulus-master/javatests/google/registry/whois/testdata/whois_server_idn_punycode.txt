@@ -1,0 +1,59 @@
+Domain Name: cat.xn--q9jyb4c
+Registry Domain ID: 9-Q9JYB4C
+Registrar WHOIS Server: whois.example.com
+Registrar URL: http://www.example.com
+Updated Date: 2009-05-29T20:13:00Z
+Creation Date: 2000-10-08T00:45:00Z
+Registry Expiry Date: 2110-10-08T00:44:59Z
+Registrar: Yes Virginia &lt;script&gt;
+Registrar IANA ID: 1
+Registrar Abuse Contact Email: jakedoe@example.com
+Registrar Abuse Contact Phone: +1.2125551216
+Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited
+Domain Status: clientRenewProhibited https://icann.org/epp#clientRenewProhibited
+Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
+Domain Status: serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited
+Registry Registrant ID: 4-ROID
+Registrant Name: (◕‿◕)
+Registrant Organization: GOOGLE INCORPORATED &lt;script&gt;
+Registrant Street: 123 Example Boulevard &lt;script&gt;
+Registrant City: KOKOMO
+Registrant State/Province: BM
+Registrant Postal Code: 31337
+Registrant Country: US
+Registrant Phone: +1.2126660420
+Registrant Fax: +1.2126660420
+Registrant Email: lol@cat.みんな
+Registry Admin ID: 5-ROID
+Admin Name: Santa Claus
+Admin Organization: GOOGLE INCORPORATED &lt;script&gt;
+Admin Street: 123 Example Boulevard &lt;script&gt;
+Admin City: KOKOMO
+Admin State/Province: BM
+Admin Postal Code: 31337
+Admin Country: US
+Admin Phone: +1.2126660420
+Admin Fax: +1.2126660420
+Admin Email: BOFH@cat.みんな
+Registry Tech ID: 6-ROID
+Tech Name: The Raven
+Tech Organization: GOOGLE INCORPORATED &lt;script&gt;
+Tech Street: 123 Example Boulevard &lt;script&gt;
+Tech City: KOKOMO
+Tech State/Province: BM
+Tech Postal Code: 31337
+Tech Country: US
+Tech Phone: +1.2126660420
+Tech Fax: +1.2126660420
+Tech Email: bog@cat.みんな
+Name Server: ns1.cat.xn--q9jyb4c
+Name Server: ns2.cat.xn--q9jyb4c
+DNSSEC: signedDelegation
+URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/
+>>> Last update of WHOIS database: 2009-06-29T20:13:00Z <<<
+
+For more information on Whois status codes, please visit https://icann.org/epp
+
+Doodle Disclaimer
+I exist so that carriage return
+in disclaimer can be tested.
